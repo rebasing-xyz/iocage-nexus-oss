@@ -1,9 +1,9 @@
 {
-  "name": "nexus-oss",              // The name of the Plugin and resulting Jail
-  "plugin_schema": "2",             // The Plugin schema version
-  "release": "3.29.2-02",           // FreeBSD version (not significantly newer than host)
-  "artifact": "https://github.com/ConorBeh/iocage-plugin-sabnzbd.git",      //The Git repo containing the Plugin
-  "properties": {                   //Jail properties that can be overridden by the user
+  "name": "nexus-oss",
+  "plugin_schema": "2",
+  "release": "3.29.2-02",
+  "artifact": "https://github.com/rebase-it/iocage-nexus-oss.git",
+  "properties": {
       "nat": 1,
       "nat_forwards": "tcp(8080:8080)"
     },
