@@ -1,1 +1,24 @@
-
+{
+  "name": "nexus-oss",              // The name of the Plugin and resulting Jail
+  "plugin_schema": "2",             // The Plugin schema version
+  "release": "3.29.2-02",           // FreeBSD version (not significantly newer than host)
+  "artifact": "https://github.com/ConorBeh/iocage-plugin-sabnzbd.git",      //The Git repo containing the Plugin
+  "properties": {                   //Jail properties that can be overridden by the user
+      "nat": 1,
+      "nat_forwards": "tcp(8080:8080)"
+    },
+  "pkgs": [                 //FreeBSD packages to be installed, one per line
+    "java",
+  ],
+  "packagesite": "http://pkg.FreeBSD.org/${ABI}/latest",
+  "fingerprints": {
+    "iocage-plugins": [
+            {
+                "function": "sha256",
+                "fingerprint": "b0170035af3acc5f3f3ae1859dc717101b4e6c1d0a794ad554928ca0cbb2f438"
+            }
+        ]
+    },
+  "revision": "0",
+  
+}
