@@ -7,8 +7,8 @@
       "nat": 1,
       "nat_forwards": "tcp(8080:8080)"
     },
-  "pkgs": [                 //FreeBSD packages to be installed, one per line
-    "java",
+  "pkgs": [
+    "openjdk11",
   ],
   "packagesite": "http://pkg.FreeBSD.org/${ABI}/latest",
   "fingerprints": {
@@ -20,5 +20,4 @@
         ]
     },
   "revision": "0",
-  
 }
