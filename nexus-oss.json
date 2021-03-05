@@ -1,23 +1,23 @@
 {
   "name": "nexus-oss",
   "plugin_schema": "2",
-  "release": "3.29.2-02",
+  "release": "3.30.0-01",
   "artifact": "https://github.com/rebase-it/iocage-nexus-oss.git",
   "properties": {
-      "nat": 1,
-      "nat_forwards": "tcp(8080:8080)"
-    },
+    "nat": 1,
+    "nat_forwards": "tcp(80:8081)"
+  },
   "pkgs": [
-    "openjdk11",
+    "openjdk8"
   ],
   "packagesite": "http://pkg.FreeBSD.org/${ABI}/latest",
   "fingerprints": {
     "iocage-plugins": [
-            {
-                "function": "sha256",
-                "fingerprint": "b0170035af3acc5f3f3ae1859dc717101b4e6c1d0a794ad554928ca0cbb2f438"
-            }
-        ]
-    },
-  "revision": "0",
+      {
+        "function": "sha256",
+        "fingerprint": "b0170035af3acc5f3f3ae1859dc717101b4e6c1d0a794ad554928ca0cbb2f438"
+      }
+    ]
+  },
+  "revision": "0"
 }

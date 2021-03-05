@@ -1,0 +1,3 @@
+{
+  "servicerestart" : "su - nexus -c 'service nexus restart'"
+}
