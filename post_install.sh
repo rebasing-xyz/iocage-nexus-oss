@@ -22,22 +22,23 @@ pw add user -n ${USER} -c NexusOSS -s /bin/sh -m
 
 ##########################################################
 # Download and install Nexus
-fetch -o /home/nexus/${BIN_NAME} https://download.sonatype.com/nexus/3/nexus-3.30.0-01-unix.tar.gz
-cd /home/nexus && tar -xzvf ${BIN_NAME}
+fetch -o /home/${USER}/${BIN_NAME} https://download.sonatype.com/nexus/3/nexus-3.30.0-01-unix.tar.gz
+cd /home/${USER} && tar -xzvf ${BIN_NAME}
 
 # remove the binary to save space
 rm -rfv ${BIN_NAME}
 
-# replace the nexus.vmoptions and nexus script
-mkdir /home/nexus/tmp-bin && cd /home/nexus/tmp-bin
+# replace the nexus.vmoptions and nexus files
+mkdir /home/${USER}/tmp-bin && cd /home/${USER}/tmp-bin
 fetch https://raw.githubusercontent.com/rebasing-xyz/iocage-nexus-oss/main/bin-tmp/nexus
 fetch https://raw.githubusercontent.com/rebasing-xyz/iocage-nexus-oss/main/bin-tmp/nexus.vmoptions
-mv -v /home/nexus/bin-tmp/{nexus,nexus.vmoptions} /home/nexus/nexus-3.30.0-01/bin/
-rm -rfv /home/nexus/bin-tmp/
-chmod +x /home/nexus/nexus-3.30.0-01/bin/nexus
+mv -v /home/${USER}/bin-tmp/nexus /home/${USER}/nexus-3.30.0-01/bin/
+mv -v /home/${USER}/bin-tmp/nexus.vmoptions /home/${USER}/nexus-3.30.0-01/bin/
+rm -rfv /home/${USER}/bin-tmp/
+chmod +x /home/${USER}/nexus-3.30.0-01/bin/nexus
 
 # update ownership on nexus home
-chown -R ${USER}:${USER} /home/nexus
+chown -R ${USER}:${USER} /home/${USER}
 
 ##########################################################
 # Defines JAVA_HOME env
@@ -46,10 +47,10 @@ export JAVA_HOME="/usr/local/openjdk8"
 ##########################################################
 # Prepare nexus to run as a service
 mkdir -p /usr/local/etc/rc.d
-ln -s /home/nexus/nexus-3.30.0-01/bin/nexus /usr/local/etc/rc.d/
+ln -s /home/${USER}/nexus-3.30.0-01/bin/nexus /usr/local/etc/rc.d/
 sysrc -f /etc/rc.conf nexus_enable="YES"
 
-su - nexus -c 'service nexus start'
+su - ${USER} -c 'service nexus start'
 
 ##########################################################
 # Create the PLUGIN_INFO
