@@ -29,12 +29,9 @@ cd /home/${USER} && tar -xzvf ${BIN_NAME}
 rm -rfv ${BIN_NAME}
 
 # replace the nexus.vmoptions and nexus files
-mkdir /home/${USER}/tmp-bin && cd /home/${USER}/tmp-bin
-fetch https://raw.githubusercontent.com/rebasing-xyz/iocage-nexus-oss/main/bin-tmp/nexus
-fetch https://raw.githubusercontent.com/rebasing-xyz/iocage-nexus-oss/main/bin-tmp/nexus.vmoptions
-mv -v /home/${USER}/bin-tmp/nexus /home/${USER}/nexus-3.30.0-01/bin/
-mv -v /home/${USER}/bin-tmp/nexus.vmoptions /home/${USER}/nexus-3.30.0-01/bin/
-rm -rfv /home/${USER}/bin-tmp/
+fetch -o /home/${USER}/nexus-3.30.0-01/bin/nexus https://raw.githubusercontent.com/rebasing-xyz/iocage-nexus-oss/main/bin-tmp/nexus
+fetch -o /home/${USER}/nexus-3.30.0-01/bin/nexus.vmoptions https://raw.githubusercontent.com/rebasing-xyz/iocage-nexus-oss/main/bin-tmp/nexus.vmoptions
+
 chmod +x /home/${USER}/nexus-3.30.0-01/bin/nexus
 
 # update ownership on nexus home
