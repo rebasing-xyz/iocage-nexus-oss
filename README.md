@@ -26,7 +26,7 @@ This is a WIP plugin, and some features might not be available.
  - No custom configuration for JVM, to do this edit this FILE manually and tune it to fit your needs.
  - Default exposed port is 8081.
 
-Feel free to raise an issue [here](https://github.com/rebase-it/iocage-nexus-oss/issues/new/choose) if you find a bug or have suggestions for improvement.
+Feel free to raise an issue [here](https://github.com/rebase-xyz/iocage-nexus-oss/issues/new/choose) if you find a bug or have suggestions for improvement.
 
 
 
