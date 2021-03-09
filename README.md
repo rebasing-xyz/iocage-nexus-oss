@@ -13,10 +13,22 @@ For more information about the purpose of each file, please take a look [here](h
 This step might requires elevated privilege on TrueNAS Web Console.
 
 
-
 ## Installing from TrueNAS Community Plugins
 
-TBA
+First download the plugin descriptor to your local system:
+
+```bash
+root@truenas[/tmp]# git clone https://github.com/rebasing-xyz/iocage-nexus-oss.git
+root@truenas[/tmp]# cd iocage-nexus-oss
+```
+
+Install the plugin, remember to update the network settings as needed:
+
+```bash
+root@truenas[/tmp]# iocage -D fetch -P nexus-oss.json --branch main
+```
+
+By default, dhcp will be used.
 
 
 ## Work In Progress

@@ -28,6 +28,11 @@ cd /home/nexus && tar -xzvf ${BIN_NAME}
 # remove the binary to save space
 rm -rfv ${BIN_NAME}
 
+# replace the nexus.vmoptions and nexus script
+mv -v /home/nexus/bin-tmp/{nexus,nexus.vmoptions} /home/nexus/nexus-3.30.0-01/bin/
+rm -rfv /home/nexus/bin-tmp/
+chmod +x /home/nexus/nexus-3.30.0-01/bin/nexus
+
 # update ownership on nexus home
 chown -R ${USER}:${USER} /home/nexus
 
