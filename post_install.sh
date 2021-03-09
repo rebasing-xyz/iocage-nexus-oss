@@ -29,6 +29,9 @@ cd /home/nexus && tar -xzvf ${BIN_NAME}
 rm -rfv ${BIN_NAME}
 
 # replace the nexus.vmoptions and nexus script
+mkdir /home/nexus/tmp-bin && cd /home/nexus/tmp-bin
+fetch https://raw.githubusercontent.com/rebasing-xyz/iocage-nexus-oss/main/bin-tmp/nexus
+fetch https://raw.githubusercontent.com/rebasing-xyz/iocage-nexus-oss/main/bin-tmp/nexus.vmoptions
 mv -v /home/nexus/bin-tmp/{nexus,nexus.vmoptions} /home/nexus/nexus-3.30.0-01/bin/
 rm -rfv /home/nexus/bin-tmp/
 chmod +x /home/nexus/nexus-3.30.0-01/bin/nexus
