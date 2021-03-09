@@ -51,7 +51,7 @@ sysrc -f /etc/rc.conf nexus_enable="YES"
 
 echo -n "Starting NexusOSS..."
 service nexus start 2>/dev/null
-while [ "$(curl -I -s -o /dev/null -w 200 http://localhost:8081/)" != "200" ]; do sleep 1; done
+while [ "$(fetch -s http://localhost:8081/)" != "fetch: Connection refused" ]; do sleep 1; done
 echo " done"
 
 ##########################################################
