@@ -22,7 +22,7 @@ pw add user -n ${USER} -c NexusOSS -s /bin/sh -m
 
 ##########################################################
 # Download and install Nexus
-fetch -o /home/nexus/${BIN_NAME} https://download.sonatype.com/nexus/3/latest-unix.tar.gz
+fetch -o /home/nexus/${BIN_NAME} https://download.sonatype.com/nexus/3/nexus-3.30.0-01-unix.tar.gz
 cd /home/nexus && tar -xzvf ${BIN_NAME}
 
 # remove the binary to save space
@@ -45,7 +45,8 @@ su - nexus -c 'service nexus start'
 
 ##########################################################
 # Create the PLUGIN_INFO
-echo "Nexus OSS Plugin. For more info please visit https://github.com/rebase-it/iocage-nexus-oss.git" >> /root/PLUGIN_INFO
+echo "Nexus OSS Plugin. For more info please visit https://github.com/rebasing-xyz/iocage-nexus-oss.git \n
+To access the Console use the default credentials: admin/admin123 \n" >> /root/PLUGIN_INFO
 
 ##########################################################
 # Yei!!
