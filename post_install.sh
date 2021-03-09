@@ -29,12 +29,14 @@ cd /home/${USER} && tar -xzvf ${BIN_NAME}
 rm -rfv ${BIN_NAME}
 
 # replace the nexus.vmoptions and nexus files
-fetch -o /home/${USER}/nexus-3.30.0-01/bin/nexus https://raw.githubusercontent.com/rebasing-xyz/iocage-nexus-oss/main/bin-tmp/nexus
-fetch -o /home/${USER}/nexus-3.30.0-01/bin/nexus.vmoptions https://raw.githubusercontent.com/rebasing-xyz/iocage-nexus-oss/main/bin-tmp/nexus.vmoptions
+fetch -o /home/${USER}/nexus-3.30.0-01/bin/nexus https://raw.githubusercontent.com/rebasing-xyz/iocage-nexus-oss/main/bin/nexus
+fetch -o /home/${USER}/nexus-3.30.0-01/bin/nexus.vmoptions https://raw.githubusercontent.com/rebasing-xyz/iocage-nexus-oss/main/bin/nexus.vmoptions
 
+echo "Applying execution permission on /home/${USER}/nexus-3.30.0-01/bin/nexus"
 chmod +x /home/${USER}/nexus-3.30.0-01/bin/nexus
 
 # update ownership on nexus home
+echo "Updating user permission for ${USER} / /home/${USER}"
 chown -R ${USER}:${USER} /home/${USER}
 
 ##########################################################
@@ -47,7 +49,10 @@ mkdir -p /usr/local/etc/rc.d
 ln -s /home/${USER}/nexus-3.30.0-01/bin/nexus /usr/local/etc/rc.d/
 sysrc -f /etc/rc.conf nexus_enable="YES"
 
-su - ${USER} -c 'service nexus start'
+echo -n "Starting NexusOSS..."
+service nexus start 2>/dev/null
+while [ "$(curl -I -s -o /dev/null -w 200 http://localhost:8081/)" != "200" ]; do sleep 1; done
+echo " done"
 
 ##########################################################
 # Create the PLUGIN_INFO
