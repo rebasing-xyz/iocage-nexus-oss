@@ -51,17 +51,16 @@ sysrc -f /etc/rc.conf nexus_enable="YES"
 sysrc 'nexus_user=${USER}'
 
 echo -n "Starting NexusOSS..."
-service nexus start 2>/dev/null
 
 status=null
 while [ "${status}" != "running" ]; do
-    service nexus status | grep "nexus is running"
+    fetch -s http://localhost:8081
     if [ $? == 0 ]; then
+        echo "Seems that Nexus is ready."
         status="running"
     fi
     sleep 5
 done
-echo " done"
 
 admin_pwd=$(cat /usr/home/nexus/sonatype-work/nexus3/admin.password)
 
@@ -74,5 +73,6 @@ echo "Nexus ${admin_pwd}" >> /root/PLUGIN_INFO
 
 ##########################################################
 # Yei!!
-echo "Post install completed!"
+IP=$(netstat -nr | grep lo0 | grep -v '::' | grep -v '127.0.0.1' | awk '{print $1}' | head -n 1)
+echo "Post install completed! Console available at http://${IP}:8081"
 
