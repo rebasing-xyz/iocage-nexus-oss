@@ -30,6 +30,12 @@ root@truenas[/tmp]# iocage -D fetch -P nexus-oss.json --branch main
 
 By default, dhcp will be used.
 
+Or use this command to do all the steps above at once:
+
+```bash
+iocage fetch -P nexus-oss -g https://github.com/rebasing-xyz/iocage-nexus-oss.gi --branch main
+```
+
 
 ## Work In Progress
 

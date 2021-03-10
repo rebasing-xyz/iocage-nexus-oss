@@ -50,13 +50,21 @@ ln -s /home/${USER}/nexus-3.30.0-01/bin/nexus /usr/local/etc/rc.d/
 sysrc -f /etc/rc.conf nexus_enable="YES"
 sysrc 'nexus_user=${USER}'
 
+echo -n "Starting NexusOSS..."
+service nexus start 2>/dev/null
+while [[ "$(service nexus status)" = *"running"* ]]; do sleep 1; done
+echo " done"
+
+admin_pwd=$(cat /usr/home/nexus/sonatype-work/nexus3/admin.password)
+
 ##########################################################
 # Save info on PLUGIN_INFO
 echo "Nexus OSS Plugin. For more info please visit https://github.com/rebasing-xyz/iocage-nexus-oss.git" >> /root/PLUGIN_INFO
 echo "To access the Console use the default credentials: " >> /root/PLUGIN_INFO
 echo "Nexus username: admin " >> /root/PLUGIN_INFO
-echo "Nexus $(cat /usr/home/nexus/sonatype-work/nexus3/admin.password)" >> /root/PLUGIN_INFO
+echo "Nexus ${admin_pwd}" >> /root/PLUGIN_INFO
 
 ##########################################################
-echo -n "Starting NexusOSS..."
-service nexus start
+# Yei!!
+echo "Post install completed!"
+
