@@ -52,7 +52,15 @@ sysrc 'nexus_user=${USER}'
 
 echo -n "Starting NexusOSS..."
 service nexus start 2>/dev/null
-while [[ "$(service nexus status)" = *"running"* ]]; do sleep 1; done
+
+status=null
+while [ "${status}" != "running" ]; do
+    service nexus status | grep "nexus is running"
+    if [ $? == 0 ]; then
+        status="running"
+    fi
+    sleep 5
+done
 echo " done"
 
 admin_pwd=$(cat /usr/home/nexus/sonatype-work/nexus3/admin.password)
