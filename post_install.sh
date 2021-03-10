@@ -60,20 +60,22 @@ while [ "${status}" != "running" ]; do
         echo "Seems that Nexus is ready."
         status="running"
     fi
+    # just for make sure that the admin.password will be generated in time.
+    fetch -s http://localhost:8081
     sleep 5
 done
 
-admin_pwd=$(cat /usr/home/nexus/sonatype-work/nexus3/admin.password)
+admin_pwd=$(cat /home/${USER}/sonatype-work/nexus3/admin.password)
 
 ##########################################################
 # Save info on PLUGIN_INFO
 echo "Nexus OSS Plugin. For more info please visit https://github.com/rebasing-xyz/iocage-nexus-oss.git" >> /root/PLUGIN_INFO
 echo "To access the Console use the default credentials: " >> /root/PLUGIN_INFO
 echo "Nexus username: admin " >> /root/PLUGIN_INFO
-echo "Nexus ${admin_pwd}" >> /root/PLUGIN_INFO
+echo "Nexus password: ${admin_pwd}" >> /root/PLUGIN_INFO
 
 ##########################################################
 # Yei!!
 IP=$(netstat -nr | grep lo0 | grep -v '::' | grep -v '127.0.0.1' | awk '{print $1}' | head -n 1)
-echo "Post install completed! Console available at http://${IP}:8081"
+echo "Post install completed! Console available at http://${IP}:8081 with credentials admin:${admin_pwd}"
 
