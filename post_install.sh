@@ -51,6 +51,7 @@ sysrc -f /etc/rc.conf nexus_enable="YES"
 sysrc 'nexus_user=${USER}'
 
 echo -n "Starting NexusOSS..."
+service nexus start 2>/dev/null
 
 status=null
 while [ "${status}" != "running" ]; do
