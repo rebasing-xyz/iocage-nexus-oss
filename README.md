@@ -41,4 +41,9 @@ This is a WIP plugin, and some features might not be available.
 Feel free to raise an issue [here](https://github.com/rebase-xyz/iocage-nexus-oss/issues/new/choose) if you find a bug or have suggestions for improvement.
 
 
+## Known issues
+
+ - Still using root to start the service, for some reason the shell gets frozen if testing it manually with
+   `iocage -D fetch -P nexus-oss.json --branch main`
+   
 
