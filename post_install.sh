@@ -48,6 +48,7 @@ export JAVA_HOME="/usr/local/openjdk8"
 mkdir -p /usr/local/etc/rc.d
 ln -s /home/${USER}/nexus-3.30.0-01/bin/nexus /usr/local/etc/rc.d/
 sysrc -f /etc/rc.conf nexus_enable="YES"
+sysrc 'nexus_user=${USER}'
 
 echo -n "Starting NexusOSS..."
 service nexus start 2>/dev/null
@@ -55,9 +56,11 @@ while [ "$(fetch -s http://localhost:8081/)" != "fetch: Connection refused" ]; d
 echo " done"
 
 ##########################################################
-# Create the PLUGIN_INFO
-echo "Nexus OSS Plugin. For more info please visit https://github.com/rebasing-xyz/iocage-nexus-oss.git \n
-To access the Console use the default credentials: admin/admin123 \n" >> /root/PLUGIN_INFO
+# Save info on PLUGIN_INFO
+echo "Nexus OSS Plugin. For more info please visit https://github.com/rebasing-xyz/iocage-nexus-oss.git" >> /root/PLUGIN_INFO
+echo "To access the Console use the default credentials: " >> /root/PLUGIN_INFO
+echo "Nexus username: admin " >> /root/PLUGIN_INFO
+echo "Nexus Passwordadmin123" >> /root/PLUGIN_INFO
 
 ##########################################################
 # Yei!!

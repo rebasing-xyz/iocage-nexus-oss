@@ -483,7 +483,7 @@ for param in $@; do
 done
 
 # user to execute as; optional but recommended to set
-run_as_user='nexus'
+run_as_user=''
 
 # load optional configuration
 rc_file="$prg_dir/${progname}.rc"
