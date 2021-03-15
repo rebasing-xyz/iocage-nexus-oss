@@ -32,11 +32,11 @@ rm -rfv ${BIN_NAME}
 fetch -o /home/${USER}/nexus-3.30.0-01/bin/nexus https://raw.githubusercontent.com/rebasing-xyz/iocage-nexus-oss/main/bin/nexus
 fetch -o /home/${USER}/nexus-3.30.0-01/bin/nexus.vmoptions https://raw.githubusercontent.com/rebasing-xyz/iocage-nexus-oss/main/bin/nexus.vmoptions
 
-echo "Applying execution permission on /home/${USER}/nexus-3.30.0-01/bin/nexus"
+echo "Applying execution permission on /home/${USER}/nexus-3.30.0-01/bin/nexus \n"
 chmod +x /home/${USER}/nexus-3.30.0-01/bin/nexus
 
 # update ownership on nexus home
-echo "Updating user permission for ${USER} / /home/${USER}"
+echo "Updating user permission for ${USER} /home/${USER} \d"
 chown -R ${USER}:${USER} /home/${USER}
 
 ##########################################################
@@ -50,7 +50,7 @@ ln -s /home/${USER}/nexus-3.30.0-01/bin/nexus /usr/local/etc/rc.d/
 sysrc -f /etc/rc.conf nexus_enable="YES"
 sysrc 'nexus_user=${USER}'
 
-echo -n "Starting NexusOSS..."
+echo -n "Starting Nexus OSS...\n"
 service nexus start 2>/dev/null
 
 status=null

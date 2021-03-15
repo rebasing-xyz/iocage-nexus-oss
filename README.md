@@ -28,7 +28,7 @@ Install the plugin, remember to update the network settings as needed:
 root@truenas[/tmp]# iocage -D fetch -P nexus-oss.json --branch main
 ```
 
-By default, dhcp will be used.
+By default, nat will be used.
 
 Or use this command to do all the steps above at once:
 
