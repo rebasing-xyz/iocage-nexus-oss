@@ -6,7 +6,7 @@
   "official": false,
   "properties": {
     "nat": 1,
-    "nat_forwards": "udp(8081:8081)"
+    "nat_forwards": "tcp(8081:8081)"
   },
   "pkgs": [
     "openjdk8"
