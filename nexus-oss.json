@@ -5,7 +5,8 @@
   "artifact": "https://github.com/rebasing-xyz/iocage-nexus-oss.git",
   "official": false,
   "properties": {
-    "dhcp": 1
+    "nat": 1,
+    "nat_forwards": "udp(8081:8081)"
   },
   "pkgs": [
     "openjdk8"
