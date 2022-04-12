@@ -49,7 +49,7 @@ export JAVA_HOME="/usr/local/openjdk8"
 mkdir -p /usr/local/etc/rc.d
 ln -s /home/${USER}/nexus-${NEXUS_VERSION}/bin/nexus /usr/local/etc/rc.d/
 sysrc -f /etc/rc.conf nexus_enable="YES"
-sysrc 'nexus_user=${USER}'
+sysrc nexus_user=${USER}
 
 echo -n "Starting Nexus OSS...\n"
 service nexus start 2>/dev/null

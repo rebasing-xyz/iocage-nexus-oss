@@ -10,7 +10,7 @@ For more information about the purpose of each file, please take a look [here](h
 
 ## Installing manually
 
-This step might requires elevated privilege on TrueNAS Web Console.
+This step might require elevated privilege on TrueNAS Web Console.
 
 
 ## Installing from TrueNAS Community Plugins
@@ -33,7 +33,7 @@ By default, nat will be used.
 Or use this command to do all the steps above at once:
 
 ```bash
-iocage fetch -P nexus-oss -g https://github.com/rebasing-xyz/iocage-nexus-oss.gi --branch main
+iocage fetch -P nexus-oss -g https://github.com/rebasing-xyz/iocage-nexus-oss.git --branch main
 ```
 
 
