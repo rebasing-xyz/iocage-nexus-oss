@@ -47,11 +47,8 @@ export JAVA_HOME="/usr/local/openjdk8"
 
 ##########################################################
 # Prepare nexus to run as a service
-mkdir -p /usr/local/etc/rc.d
-#ln -s /home/${USER}/nexus-${NEXUS_VERSION}/bin/nexus /usr/local/etc/rc.d/
-#cp /home/${USER}/nexus-${NEXUS_VERSION}/bin/nexus /usr/local/etc/rc.d/
-cp /home/${USER}/nexus-${NEXUS_VERSION}/bin/nexus-rc.sh /usr/local/etc/rc.d/nexus
-chmod 555 /usr/local/etc/rc.d/nexus
+cp /home/${USER}/nexus-${NEXUS_VERSION}/bin/nexus-rc.sh /etc/rc.d/nexus
+chmod 555 /etc/rc.d/nexus
 
 sysrc -f /etc/rc.conf nexus_enable="YES"
 sysrc nexus_user=${USER}
