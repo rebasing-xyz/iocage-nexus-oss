@@ -3,6 +3,7 @@
 TrueNAS IOCage Plugin for Nexus Repository OSS
 
  - Nexus OSS download page: https://help.sonatype.com/repomanager3/download
+ - Nexus version is 3.38.1-01
 
 This repository contains all files needed to deploy it on TrueNAS.
 For more information about the purpose of each file, please take a look [here](https://www.truenas.com/docs/hub/contributing/creating-plugins/).
