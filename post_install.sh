@@ -32,6 +32,7 @@ rm -rfv ${BIN_NAME}
 # replace the nexus.vmoptions and nexus files
 fetch -o /home/${USER}/nexus-${NEXUS_VERSION}/bin/nexus https://raw.githubusercontent.com/rebasing-xyz/iocage-nexus-oss/main/bin/nexus
 fetch -o /home/${USER}/nexus-${NEXUS_VERSION}/bin/nexus.vmoptions https://raw.githubusercontent.com/rebasing-xyz/iocage-nexus-oss/main/bin/nexus.vmoptions
+fetch -o /home/${USER}/nexus-${NEXUS_VERSION}/bin/nexus-rc.sh https://raw.githubusercontent.com/rebasing-xyz/iocage-nexus-oss/main/bin/nexus-rc.sh
 
 echo "Applying execution permission on /home/${USER}/nexus-${NEXUS_VERSION}/bin/nexus \n"
 chmod +x /home/${USER}/nexus-${NEXUS_VERSION}/bin/nexus
@@ -46,10 +47,11 @@ export JAVA_HOME="/usr/local/openjdk8"
 
 ##########################################################
 # Prepare nexus to run as a service
-mkdir -p /usr/local/etc/rc.d
-ln -s /home/${USER}/nexus-${NEXUS_VERSION}/bin/nexus /usr/local/etc/rc.d/
+cp /home/${USER}/nexus-${NEXUS_VERSION}/bin/nexus-rc.sh /etc/rc.d/nexus
+chmod 555 /etc/rc.d/nexus
+
 sysrc -f /etc/rc.conf nexus_enable="YES"
-sysrc 'nexus_user=${USER}'
+sysrc nexus_user=${USER}
 
 echo -n "Starting Nexus OSS...\n"
 service nexus start 2>/dev/null

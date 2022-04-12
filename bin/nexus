@@ -15,6 +15,7 @@
 # Uncomment the following line to add additional VM parameters
 # INSTALL4J_ADD_VM_PARAMS=
 
+
 JAVA_HOME="/usr/local/openjdk8"
 
 INSTALL4J_JAVA_PREFIX=""
@@ -185,7 +186,7 @@ read_vmoptions() {
     exec 8< "$vmoptions_file"
     while read cur_option<&8; do
       is_comment=`expr "W$cur_option" : 'W *#.*'`
-      if [ "$is_comment" = "0" ]; then 
+      if [ "$is_comment" = "0" ]; then
         vmo_classpath=`expr "W$cur_option" : 'W *-classpath \(.*\)'`
         vmo_classpath_a=`expr "W$cur_option" : 'W *-classpath/a \(.*\)'`
         vmo_classpath_p=`expr "W$cur_option" : 'W *-classpath/p \(.*\)'`
@@ -207,7 +208,7 @@ read_vmoptions() {
           local_classpath="${vmo_classpath_p}:${local_classpath}"
         elif [ "W$vmo_include" = "W" ]; then
           needs_quotes=`expr "W$cur_option" : 'W.* .*'`
-          if [ "$needs_quotes" = "0" ]; then 
+          if [ "$needs_quotes" = "0" ]; then
             vmoptions_val="$vmoptions_val $cur_option"
           else
             if [ "W$vmov_1" = "W" ]; then
@@ -296,7 +297,7 @@ fi
 fi
 
 if [ -z "$app_java_home" ]; then
-  test_jvm "$app_home/jre" 
+  test_jvm "$app_home/jre"
   if [ -z "$app_java_home" ] && [ $tested_jvm = "false" ]; then
 if [ -f "$db_file" ]; then
   rm "$db_file" 2> /dev/null
@@ -451,11 +452,11 @@ add_class_path "$app_home/lib/boot/jakarta.xml.bind-api-2.3.3.jar"
 add_class_path "$app_home/lib/boot/jaxb-runtime-2.3.3.jar"
 add_class_path "$app_home/lib/boot/txw2-2.3.3.jar"
 add_class_path "$app_home/lib/boot/istack-commons-runtime-3.0.10.jar"
-add_class_path "$app_home/lib/boot/org.apache.karaf.main-4.2.9.jar"
-add_class_path "$app_home/lib/boot/osgi.core-6.0.0.jar"
-add_class_path "$app_home/lib/boot/org.apache.karaf.specs.activator-4.2.9.jar"
-add_class_path "$app_home/lib/boot/org.apache.karaf.diagnostic.boot-4.2.9.jar"
-add_class_path "$app_home/lib/boot/org.apache.karaf.jaas.boot-4.2.9.jar"
+add_class_path "$app_home/lib/boot/org.apache.karaf.main-4.3.6.jar"
+add_class_path "$app_home/lib/boot/osgi.core-7.0.0.jar"
+add_class_path "$app_home/lib/boot/org.apache.karaf.specs.activator-4.3.6.jar"
+add_class_path "$app_home/lib/boot/org.apache.karaf.diagnostic.boot-4.3.6.jar"
+add_class_path "$app_home/lib/boot/org.apache.karaf.jaas.boot-4.3.6.jar"
 
 vmoptions_val=""
 read_vmoptions "$prg_dir/$progname.vmoptions"
@@ -547,7 +548,7 @@ return_code=$?
     start-launchd)
         echo "Starting nexus"
 
-$INSTALL4J_JAVA_PREFIX exec "$app_java_home/bin/java" -server -Dinstall4j.jvmDir="$app_java_home" -Dexe4j.moduleName="$prg_dir/$progname" "-XX:+UnlockDiagnosticVMOptions" "-Dinstall4j.launcherId=245" "-Dinstall4j.swt=false" "$vmov_1" "$vmov_2" "$vmov_3" "$vmov_4" "$vmov_5" $INSTALL4J_ADD_VM_PARAMS -classpath "$local_classpath" com.install4j.runtime.launcher.UnixLauncher start 9d17dc87 0 0 org.sonatype.nexus.karaf.NexusMain 
+$INSTALL4J_JAVA_PREFIX exec "$app_java_home/bin/java" -server -Dinstall4j.jvmDir="$app_java_home" -Dexe4j.moduleName="$prg_dir/$progname" "-XX:+UnlockDiagnosticVMOptions" "-Dinstall4j.launcherId=245" "-Dinstall4j.swt=false" "$vmov_1" "$vmov_2" "$vmov_3" "$vmov_4" "$vmov_5" $INSTALL4J_ADD_VM_PARAMS -classpath "$local_classpath" com.install4j.runtime.launcher.UnixLauncher start 9d17dc87 0 0 org.sonatype.nexus.karaf.NexusMain
 return_code=$?
 
 
@@ -583,14 +584,14 @@ return_code=$?
     ;;
     run)
 
-$INSTALL4J_JAVA_PREFIX exec "$app_java_home/bin/java" -server -Dinstall4j.jvmDir="$app_java_home" -Dexe4j.moduleName="$prg_dir/$progname" "-XX:+UnlockDiagnosticVMOptions" "-Dinstall4j.launcherId=245" "-Dinstall4j.swt=false" "$vmov_1" "$vmov_2" "$vmov_3" "$vmov_4" "$vmov_5" $INSTALL4J_ADD_VM_PARAMS -classpath "$local_classpath" com.install4j.runtime.launcher.UnixLauncher run 9d17dc87 0 0 org.sonatype.nexus.karaf.NexusMain 
+$INSTALL4J_JAVA_PREFIX exec "$app_java_home/bin/java" -server -Dinstall4j.jvmDir="$app_java_home" -Dexe4j.moduleName="$prg_dir/$progname" "-XX:+UnlockDiagnosticVMOptions" "-Dinstall4j.launcherId=245" "-Dinstall4j.swt=false" "$vmov_1" "$vmov_2" "$vmov_3" "$vmov_4" "$vmov_5" $INSTALL4J_ADD_VM_PARAMS -classpath "$local_classpath" com.install4j.runtime.launcher.UnixLauncher run 9d17dc87 0 0 org.sonatype.nexus.karaf.NexusMain
 return_code=$?
 
 
     ;;
     run-redirect)
 
-$INSTALL4J_JAVA_PREFIX exec "$app_java_home/bin/java" -server -Dinstall4j.jvmDir="$app_java_home" -Dexe4j.moduleName="$prg_dir/$progname" "-XX:+UnlockDiagnosticVMOptions" "-Dinstall4j.launcherId=245" "-Dinstall4j.swt=false" "$vmov_1" "$vmov_2" "$vmov_3" "$vmov_4" "$vmov_5" $INSTALL4J_ADD_VM_PARAMS -classpath "$local_classpath" com.install4j.runtime.launcher.UnixLauncher run-redirect 9d17dc87 0 0 org.sonatype.nexus.karaf.NexusMain 
+$INSTALL4J_JAVA_PREFIX exec "$app_java_home/bin/java" -server -Dinstall4j.jvmDir="$app_java_home" -Dexe4j.moduleName="$prg_dir/$progname" "-XX:+UnlockDiagnosticVMOptions" "-Dinstall4j.launcherId=245" "-Dinstall4j.swt=false" "$vmov_1" "$vmov_2" "$vmov_3" "$vmov_4" "$vmov_5" $INSTALL4J_ADD_VM_PARAMS -classpath "$local_classpath" com.install4j.runtime.launcher.UnixLauncher run-redirect 9d17dc87 0 0 org.sonatype.nexus.karaf.NexusMain
 return_code=$?
 
 
@@ -602,3 +603,4 @@ return_code=$?
 esac
 
 exit $return_code
+
