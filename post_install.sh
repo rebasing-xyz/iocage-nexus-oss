@@ -15,6 +15,7 @@ USER="nexus"
 
 # Binary name
 BIN_NAME="nexus-oss.tar.gz"
+NEXUS_VERSION="3.38.1-01"
 
 ##########################################################
 # Add nexus user
@@ -22,18 +23,19 @@ pw add user -n ${USER} -c NexusOSS -s /bin/sh -m
 
 ##########################################################
 # Download and install Nexus
-fetch -o /home/${USER}/${BIN_NAME} https://download.sonatype.com/nexus/3/nexus-3.30.0-01-unix.tar.gz
+fetch -o /home/${USER}/${BIN_NAME} https://download.sonatype.com/nexus/3/nexus-${NEXUS_VERSION}-unix.tar.gz
 cd /home/${USER} && tar -xzvf ${BIN_NAME}
 
 # remove the binary to save space
 rm -rfv ${BIN_NAME}
 
 # replace the nexus.vmoptions and nexus files
-fetch -o /home/${USER}/nexus-3.30.0-01/bin/nexus https://raw.githubusercontent.com/rebasing-xyz/iocage-nexus-oss/main/bin/nexus
-fetch -o /home/${USER}/nexus-3.30.0-01/bin/nexus.vmoptions https://raw.githubusercontent.com/rebasing-xyz/iocage-nexus-oss/main/bin/nexus.vmoptions
+fetch -o /home/${USER}/nexus-${NEXUS_VERSION}/bin/nexus https://raw.githubusercontent.com/rebasing-xyz/iocage-nexus-oss/main/bin/nexus
+fetch -o /home/${USER}/nexus-${NEXUS_VERSION}/bin/nexus.vmoptions https://raw.githubusercontent.com/rebasing-xyz/iocage-nexus-oss/main/bin/nexus.vmoptions
+fetch -o /home/${USER}/nexus-${NEXUS_VERSION}/bin/nexus-rc.sh https://raw.githubusercontent.com/rebasing-xyz/iocage-nexus-oss/main/bin/nexus-rc.sh
 
-echo "Applying execution permission on /home/${USER}/nexus-3.30.0-01/bin/nexus \n"
-chmod +x /home/${USER}/nexus-3.30.0-01/bin/nexus
+echo "Applying execution permission on /home/${USER}/nexus-${NEXUS_VERSION}/bin/nexus \n"
+chmod +x /home/${USER}/nexus-${NEXUS_VERSION}/bin/nexus
 
 # update ownership on nexus home
 echo "Updating user permission for ${USER} /home/${USER} \d"
@@ -45,10 +47,11 @@ export JAVA_HOME="/usr/local/openjdk8"
 
 ##########################################################
 # Prepare nexus to run as a service
-mkdir -p /usr/local/etc/rc.d
-ln -s /home/${USER}/nexus-3.30.0-01/bin/nexus /usr/local/etc/rc.d/
+cp /home/${USER}/nexus-${NEXUS_VERSION}/bin/nexus-rc.sh /etc/rc.d/nexus
+chmod 555 /etc/rc.d/nexus
+
 sysrc -f /etc/rc.conf nexus_enable="YES"
-sysrc 'nexus_user=${USER}'
+sysrc nexus_user=${USER}
 
 echo -n "Starting Nexus OSS...\n"
 service nexus start 2>/dev/null
