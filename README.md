@@ -41,7 +41,7 @@ iocage fetch -P nexus-oss -g https://github.com/rebasing-xyz/iocage-nexus-oss.gi
 
 This is a WIP plugin, and some features might not be available.
  - At this point, it exposes only plain text http protocol
- - No custom configuration for JVM, to do this edit the `/home/nexus/nexus-3.30.0-01/bin/nexus.vmoptions` 
+ - No custom configuration for JVM, to do this edit the `/home/nexus/nexus-3.38.1-01/bin/nexus.vmoptions` 
    manually inside the plugin jail and tune it to fit your needs.
  - Default exposed port is 8081.
 
