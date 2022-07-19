@@ -16,7 +16,7 @@
 # INSTALL4J_ADD_VM_PARAMS=
 
 
-JAVA_HOME="/usr/local/openjdk8"
+JAVA_HOME="/usr/local/openjdk11"
 
 INSTALL4J_JAVA_PREFIX=""
 GREP_OPTIONS=""
